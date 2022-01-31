@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 import Navbar from '../navbar/Navbar'
 import BackgroundImg from '../../assets/images/dark.jpg';
-import Carousel from '../carousel';
+import SwipeToSlide from '../carousel';
 
 export default function PhotosComponent() {
     return (
@@ -11,7 +13,7 @@ export default function PhotosComponent() {
             <Background>
                 <img src={BackgroundImg} alt="" />
                 <Navbar />
-                <Carousel />
+                <SwipeToSlide />
             </Background>
             
         </div>
@@ -20,6 +22,7 @@ export default function PhotosComponent() {
 
 const Background = styled.div`
     position: relative;
+    background: #000002;
 
     img {
         background-size: cover;
