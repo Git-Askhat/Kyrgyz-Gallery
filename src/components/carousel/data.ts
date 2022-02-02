@@ -27,6 +27,7 @@ export const carouselData = [
     {
         title: 'Winter',
         img: winter,
+        link: '/winter'
     },
     {
         title: 'Home',
