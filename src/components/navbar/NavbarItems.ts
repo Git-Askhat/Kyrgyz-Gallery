@@ -1,19 +1,19 @@
 const NavbarItems = [
   {
     title: 'Photos',
-    url: 'photos',
+    url: '/photos',
   },
   {
     title: 'Videos',
-    url: 'videos',
+    url: '/videos',
   },
   {
     title: 'Vectors',
-    url: 'vectors',
+    url: '/vectors',
   },
   {
     title: '3D Models',
-    url: 'models',
+    url: '/models',
   },
 ];
 

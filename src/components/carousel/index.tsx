@@ -1,10 +1,11 @@
-import { Link } from 'gatsby';
 import React, { Component } from 'react';
 import Slider from 'react-slick';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 import { carouselData } from './data';
-// import design from '../../assets/images/carousel/design.jpg';
+import '../../styles/global.scss';
 
 export default class SwipeToSlide extends Component {
   render() {
@@ -28,12 +29,14 @@ export default class SwipeToSlide extends Component {
               // <a href={item.link}>
               <div>
                 <Small>
-                  <a href={item.link}>
+                  {/* <a href={item.link}> */}
+                  <div>
                     <div>
                       <h3>{item.title}</h3>
                     </div>
                     <img src={item.img} alt='' />
-                  </a>
+                  </div>
+                  {/* </a> */}
                 </Small>
               </div>
               // </a>
@@ -61,10 +64,6 @@ const Small = styled.div`
   margin-left: 25px;
   align-items: center; 
   justify-content: center;
-  /* background-image: url({design});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat; */
 
   a {
     position: absolute;

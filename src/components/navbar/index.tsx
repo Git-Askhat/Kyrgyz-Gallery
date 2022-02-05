@@ -1,14 +1,51 @@
 import { Link } from 'gatsby';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import NavbarItems from './NavbarItems';
 import SvgLogo from '../../assets/svg/Logo';
 import SvgOptions from '../../assets/svg/Options';
+import Dropdown from '../dropdown/index';
 
-export default function Navbar() {
+interface ActiveUrl {
+  activeUrl?: string;
+  aUrl?: string,
+}
+
+export default function Navbar(props: { active: string; }) {
+
+  const [click, setClick] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
+
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+
+  const onMouseEnter = () => {
+    if (window.innerWidth < 960) {
+      setDropdown(false);
+    } else {
+      setDropdown(true);
+    }
+  }
+
+  const onMouseLeave = () => {
+    if (window.innerWidth < 960) {
+      setDropdown(false);
+    } else {
+      setDropdown(false);
+    }
+  }
+
+  const mouseClick = () => {
+    setDropdown(!dropdown);
+  }
+
+  const onMouseMove = () => {
+    setDropdown(true);
+  }
+
   return (
-    <Nav>
+    <Nav onClick={mouseClick}>
       <NavSml>
         <Div>
           <Logo>
@@ -16,14 +53,15 @@ export default function Navbar() {
           </Logo>
           <Menu>
             {NavbarItems.map((item, index) => {
-              return <NavbarLink to={item.url}>{item.title}</NavbarLink>;
+              return <NavbarLink to={item.url} activeUrl={item.url} aUrl={props.active}>{item.title}</NavbarLink>;
             })}
           </Menu>
         </Div>
         <Menu>
           <NavbarLink to='discover'>Discover</NavbarLink>
-          <Options>
+          <Options onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
             <SvgOptions />
+            {dropdown && <Dropdown />}
           </Options>
           <NavbarLink to='sign-in'>Sign in</NavbarLink>
         </Menu>
@@ -62,33 +100,28 @@ const Menu = styled.div`
   align-items: center;
 `;
 
-const NavbarLink = styled(Link)`
+const NavbarLink = styled(Link)<ActiveUrl>`
   margin-left: 40px;
   cursor: pointer;
   align-items: center;
   text-decoration: none;
   color: white;
   font-size: 22px;
-  border-bottom: 3px solid;
-
-  /* ::before {
-        content: "";
-        position: absolute;
-        bottom: 80px;
-        width: 30px;
-        height: 4px;
-        background: linear-gradient(90deg, #001C81 0%, #883280 72.14%, #BC3A80 100%);
-
-    } */
+  border-bottom: ${props => (props.activeUrl===props.aUrl && props.activeUrl) ? "3px solid" : 0}  
 `;
 
 const Options = styled.div`
   align-items: center;
   margin-left: 40px;
   cursor: pointer;
+
+  .SvgOptions {
+    padding: 50px;
+  }
 `;
 
 const Div = styled.div`
   display: flex;
   align-items: center;
 `;
+
