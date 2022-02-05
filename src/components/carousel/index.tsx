@@ -1,66 +1,60 @@
-import { Link } from "gatsby";
-import React, { Component } from "react";
-import Slider from "react-slick";
-import styled, { createGlobalStyle } from "styled-components";
+import React, { Component } from 'react';
+import Slider from 'react-slick';
+import styled from 'styled-components';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-import { carouselData } from './data'
+import { carouselData } from './data';
+import '../../styles/global.scss';
 
 export default class SwipeToSlide extends Component {
   render() {
     const settings = {
-      className: "center",
+      className: 'center',
       infinite: true,
-      centerPadding: "60px",
+      centerPadding: '60px',
       slidesToShow: 5,
       swipeToSlide: true,
-      afterChange: function(index: any) {
+      afterChange: function (index: any) {
         console.log(
           `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
         );
-      }
+      },
     };
     return (
       <>
-      {/* <Div> */}
         <Slide {...settings}>
           {carouselData.map((item, index) => {
             return (
-              
-              <Link to={`${item.link}`}>
+              // <a href={item.link}>
               <div>
-              <Small>
-                <div>
-                  <h3>{item.title}</h3>
-                </div>
-                <img src={item.img} alt="" />
-              </Small>
+                <Small>
+                  {/* <a href={item.link}> */}
+                  <div>
+                    <div>
+                      <h3>{item.title}</h3>
+                    </div>
+                    <img src={item.img} alt='' />
+                  </div>
+                  {/* </a> */}
+                </Small>
               </div>
-              </Link>
-             
-            )
+              // </a>
+            );
           })}
         </Slide>
-      {/* </Div> */}
       </>
     );
   }
 }
 
-// const Div = styled.div`
-//   display: flex;
-//   width: 100%;
-//   justify-content: center;
-//   align-items: center;
-// `
-
 const Slide = styled(Slider)`
-
   display: flex;
   width: 100%;
   padding: 25px 20px;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const Small = styled.div`
   display: flex;
@@ -71,13 +65,17 @@ const Small = styled.div`
   align-items: center; 
   justify-content: center;
 
+  a {
+    position: absolute;
+  }
+
   img { 
     width: 100%;
     height: 100%;
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
-    border-radius: 4px;
+    border-radius: 16px;
   }
 
   div { 
@@ -88,11 +86,11 @@ const Small = styled.div`
     position: absolute;
     align-items: center;
     justify-content: center;
-    border-radius: 4px;
+    border-radius: 16px;
   }
 
   h3 {
     color: white;
   }
 }
-`
+`;
