@@ -4,18 +4,33 @@ import styled from 'styled-components';
 import Navbar from '../navbar';
 import video from '../../assets/videos/night-sky.mp4';
 import SwipeToSlide from '../carousel';
+import MainSearch from '../main_search/index';
 import '../../styles/global.scss';
 
 export default function VideosComponent() {
   return (
     <Div>
       <Background>
-        <Navbar active='/videos' />
+        <Nav active='/videos' />
         <Video autoPlay loop muted>
           <source src={video} type='video/mp4' />
         </Video>
+        <MainSearch search_text='videos' />
       </Background>
       <SwipeToSlide />
+      <h1>*</h1>
+      <h1>*</h1>
+      <h1>*</h1>
+      <h1>*</h1>
+      <h1>*</h1>
+      <h1>*</h1>
+      <h1>*</h1>
+      <h1>*</h1>
+      <h1>*</h1>
+      <h1>*</h1>
+      <h1>*</h1>
+      <h1>*</h1>
+
     </Div>
   );
 }
@@ -24,6 +39,10 @@ const Div = styled.div`
   width: 100%;
   overflow: hidden;
   background: #000002;
+`;
+
+const Nav = styled(Navbar)`
+  position: absolute;
 `;
 
 const Background = styled.div`
@@ -36,14 +55,9 @@ const Background = styled.div`
   overflow: hidden;
 `;
 
-const Nav = styled(Navbar)`
-  position: absolute;
-  z-index: 2;
-`;
-
 const Video = styled.video`
-  /* position: absolute; */
-  top: 0;
-  left: 0;
-  width: 100%;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100vh;
 `;
