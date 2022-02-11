@@ -75,7 +75,7 @@ const Small = styled.div`
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
-    border-radius: 16px;
+    border-radius: 4px;
   }
 
   div { 
@@ -86,7 +86,7 @@ const Small = styled.div`
     position: absolute;
     align-items: center;
     justify-content: center;
-    border-radius: 16px;
+    border-radius: 4px;
   }
 
   h3 {
