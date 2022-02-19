@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { DropdownItems } from './dropdownItems';
+import SignIn from '../sign-in/index';
 import './dropdown.scss';
 
 export default function Dropdown() {
   const [click, setClick] = useState(false);
-
   const handleClick = () => setClick(!click);
 
   return (
@@ -21,7 +21,8 @@ export default function Dropdown() {
               <Link
                 className={item.cName}
                 to={item.path}
-                onClick={() => setClick(false)}>
+                onClick={() => setClick(false)}
+                >
                 {item.title}
               </Link>
             </li>

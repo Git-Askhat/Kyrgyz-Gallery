@@ -26,20 +26,20 @@ export default class SwipeToSlide extends Component {
         <Slide {...settings}>
           {carouselData.map((item, index) => {
             return (
-              // <a href={item.link}>
               <div>
                 <Small>
                   {/* <a href={item.link}> */}
                   <div>
                     <div>
-                      <h3>{item.title}</h3>
+                      <a href={item.link}>
+                        <h3>{item.title}</h3>
+                      </a>
                     </div>
                     <img src={item.img} alt='' />
                   </div>
                   {/* </a> */}
                 </Small>
               </div>
-              // </a>
             );
           })}
         </Slide>

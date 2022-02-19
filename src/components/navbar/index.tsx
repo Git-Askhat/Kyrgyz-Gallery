@@ -8,6 +8,8 @@ import SvgOptions from '../../assets/svg/Options';
 import Dropdown from '../dropdown/index';
 import MainSearch from '../main_search/nav_search';
 
+import SignIn from '../sign-in/index';
+
 interface ActiveUrl {
   activeUrl?: string;
   aUrl?: string;
@@ -88,7 +90,7 @@ export default function Navbar(props: { active: string }) {
             <SvgOptions />
             {dropdown && <Dropdown />}
           </Options>
-          <NavbarLink to='sign-in'>Sign in</NavbarLink>
+          <NavbarLink to="/sign-in">Sign in</NavbarLink>
         </Menu>
       </NavSml>
     </Nav>
