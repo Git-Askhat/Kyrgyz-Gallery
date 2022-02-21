@@ -1,25 +1,18 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import SignUp from '../sign-up/index';
-
 import SvgLogo from '../../assets/svg/LogoColored';
 import SvgGoogle from '../../assets/svg/Google';
 import SvgFacebook from '../../assets/svg/Facebook';
 import SvgClose from '../../assets/svg/CloseSign';
 
-export default function SignIn(props: { isOpen: any; close: any }) {
+export default function SignUp(props: { isOpen: any; close: any }) {
   if (!props.isOpen) return null;
 
   const [isOpen, setOpen] = useState(false);
   const inputRef = useRef(null);
 
-  const modalOpen = () => {
-    setOpen(true);
-  };
-
   return (
-    <>
     <Background>
       <Container>
         <SvgClose className='Close' onClick={props.close} />
@@ -28,29 +21,33 @@ export default function SignIn(props: { isOpen: any; close: any }) {
         </Logo>
         <Buttons>
           <ButtonGoogle>
-            Sign in with <SvgGoogle className='Logo' />
+            Join in with <SvgGoogle className='Logo' />
           </ButtonGoogle>
           <ButtonFacebook>
-            Sign in with <SvgFacebook className='Logo' />
+            Join in with <SvgFacebook className='Logo' />
           </ButtonFacebook>
         </Buttons>
+        <Or>
+          <hr />
+          OR
+          <hr />
+        </Or>
         <InputName
           ref={inputRef}
-          placeholder='Username or E-mail'
+          placeholder='Full name'
           // onMouseEnter={() => {
           //   inputRef.current.focus();
           // }}
         />
-        <InputName type='password' ref={inputRef} placeholder='Password' />
-        <SignButton>Sign In</SignButton>
+        <InputEmail type='text' ref={inputRef} placeholder='E-mail' />
+        <InputPass type='password' ref={inputRef} placeholder='Password' />
+        <SignButton>Sign Up</SignButton>
         <Links>
-          <ButtonForgot>Forgot password?</ButtonForgot>
-          <ButtonSign onClick={modalOpen}>Sign up</ButtonSign>
+          <span>Have an account?</span>
+          <ButtonSign>Sign up</ButtonSign>
         </Links>
       </Container>
     </Background>
-    <SignUp isOpen={isOpen} close={() => setOpen(false)} />
-    </>
   );
 }
 
@@ -70,7 +67,7 @@ const Background = styled.div`
 const Container = styled.div`
   position: absolute;
   width: 600px;
-  height: 600px;
+  height: 622px;
   background: white;
   display: flex;
   flex-direction: column;
@@ -93,11 +90,24 @@ const Logo = styled(SvgLogo)`
   margin-top: 22px;
 `;
 
+const Or = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  width: 450px;
+
+  hr {
+    width: 200px;
+    border: 1px solid #000000;
+  }
+`;
+
 const Buttons = styled.div`
   width: 450px;
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  margin-top: 25px;
 `;
 
 const ButtonGoogle = styled.button`
@@ -131,8 +141,10 @@ const InputName = styled.input`
   font-size: 18px;
   padding: 0 10px;
   display: flex;
-  margin-top: 30px;
+  margin-top: 21px;
 `;
+
+const InputEmail = styled(InputName)``;
 
 const InputPass = styled(InputName)``;
 
@@ -149,20 +161,18 @@ const SignButton = styled.button`
 `;
 
 const Links = styled.div`
-  width: 450px;
+  width: 216px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 33px;
+  margin-top: 12px;
 `;
 
-const ButtonForgot = styled.button`
+const ButtonSign = styled.button`
   background: transparent;
   border: none;
   padding: 5px;
   font-size: 18px;
-  color: #0B1E43;
+  color: #0b1e43;
   cursor: pointer;
 `;
-
-const ButtonSign = styled(ButtonForgot)``

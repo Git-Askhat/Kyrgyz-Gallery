@@ -25,7 +25,7 @@ export default function Gallery() {
         return (
           <div className='pics' key={index} onClick={() => getImg(item.src)}>
             <img src={item.src} style={{ width: '100%' }} />
-            <Hover />
+            {/* <Hover /> */}
           </div>
         );
       })}
