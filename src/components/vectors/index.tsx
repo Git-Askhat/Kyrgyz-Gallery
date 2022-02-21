@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Navbar from '../../components/navbar/index';
 import SwipeToSlide from '../carousel/index';
 import MainSearch from '../main_search/index'
+import Gallery from '../gallery/galleryVector';
 import '../../styles/global.scss';
 
 export default function VectorsComponent() {
@@ -15,15 +16,7 @@ export default function VectorsComponent() {
         <MainSearch search_text="videos"/>
       </Container>
       <SwipeToSlide />
-      <h1>Always</h1>
-      <h1>Like a</h1>
-      <h1>Coffee</h1>
-      <h1>Always</h1>
-      <h1>Like a</h1>
-      <h1>Coffee</h1>
-      <h1>Always</h1>
-      <h1>Like a</h1>
-      <h1>Coffee</h1>
+      <Gallery />
     </Div>
   );
 }

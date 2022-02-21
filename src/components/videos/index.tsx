@@ -5,6 +5,7 @@ import Navbar from '../navbar';
 import video from '../../assets/videos/night-sky.mp4';
 import SwipeToSlide from '../carousel';
 import MainSearch from '../main_search/index';
+import GalleryVideo from '../gallery/galleryVideo';
 import '../../styles/global.scss';
 
 export default function VideosComponent() {
@@ -18,19 +19,7 @@ export default function VideosComponent() {
         <MainSearch search_text='videos' />
       </Background>
       <SwipeToSlide />
-      <h1>*</h1>
-      <h1>*</h1>
-      <h1>*</h1>
-      <h1>*</h1>
-      <h1>*</h1>
-      <h1>*</h1>
-      <h1>*</h1>
-      <h1>*</h1>
-      <h1>*</h1>
-      <h1>*</h1>
-      <h1>*</h1>
-      <h1>*</h1>
-
+      <GalleryVideo />
     </Div>
   );
 }

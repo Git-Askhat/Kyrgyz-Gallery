@@ -8,6 +8,8 @@ import SvgOptions from '../../assets/svg/Options';
 import Dropdown from '../dropdown/index';
 import MainSearch from '../main_search/nav_search';
 
+import SignIn from '../sign-in/index';
+
 interface ActiveUrl {
   activeUrl?: string;
   aUrl?: string;
@@ -21,6 +23,8 @@ export default function Navbar(props: { active: string }) {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const [isOpen, setOpen] = useState(false);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -59,39 +63,46 @@ export default function Navbar(props: { active: string }) {
     setDropdown(true);
   };
 
+  const modalOpen = () => {
+    setOpen(true);
+  };
+
   return (
-    <Nav scroll={scrolled}>
-      <NavSml scroll={scrolled}>
-        <Div>
-          <Logo>
-            <SvgLogo />
-          </Logo>
-          <Menu1 scroll={scrolled}>
-            {NavbarItems.map((item, index) => {
-              return (
-                <NavbarLink
-                  to={item.url}
-                  activeUrl={item.url}
-                  aUrl={props.active}>
-                  {item.title}
-                </NavbarLink>
-              );
-            })}
-          </Menu1>
-          <Search scroll={scrolled}>
-            <MainSearch search_text='photos' />
-          </Search>
-        </Div>
-        <Menu>
-          <NavbarLink to='discover'>Discover</NavbarLink>
-          <Options onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-            <SvgOptions />
-            {dropdown && <Dropdown />}
-          </Options>
-          <NavbarLink to='sign-in'>Sign in</NavbarLink>
-        </Menu>
-      </NavSml>
-    </Nav>
+    <>
+      <Nav scroll={scrolled}>
+        <NavSml scroll={scrolled}>
+          <Div>
+            <Logo>
+              <SvgLogo />
+            </Logo>
+            <Menu1 scroll={scrolled}>
+              {NavbarItems.map((item, index) => {
+                return (
+                  <NavbarLink
+                    to={item.url}
+                    activeUrl={item.url}
+                    aUrl={props.active}>
+                    {item.title}
+                  </NavbarLink>
+                );
+              })}
+            </Menu1>
+            <Search scroll={scrolled}>
+              <MainSearch search_text='photos' />
+            </Search>
+          </Div>
+          <Menu>
+            <NavbarLink to='discover'>Discover</NavbarLink>
+            <Options onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+              <SvgOptions />
+              {dropdown && <Dropdown />}
+            </Options>
+            <Sign onClick={modalOpen}>Sign In</Sign>
+          </Menu>
+        </NavSml>
+      </Nav>
+      <SignIn isOpen={isOpen} close={() => setOpen(false)} />
+    </>
   );
 }
 
@@ -133,7 +144,7 @@ const Menu1 = styled.div<changeBackground>`
 const Search = styled.div<changeBackground>`
   display: ${(props) => (props.scroll ? 'flex' : 'none')};
   align-items: center;
-`
+`;
 
 const Menu = styled.div`
   display: flex;
@@ -149,6 +160,15 @@ const NavbarLink = styled(Link)<ActiveUrl>`
   font-size: 22px;
   border-bottom: ${(props) =>
     props.activeUrl === props.aUrl && props.activeUrl ? '3px solid' : 0};
+`;
+
+const Sign = styled.a`
+  margin-left: 40px;
+  cursor: pointer;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-size: 22px;
 `;
 
 const Options = styled.div`
