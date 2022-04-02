@@ -16,7 +16,7 @@ export default function PhotosComponent() {
     <Div>
       <Background>
         <img src={BackgroundImg} alt='' />
-        <Navbar active='/photos' />
+        <Navbar active='/photos' token={true}/>
         <MainSearch search_text='Image' />
       </Background>
       <SignIn isOpen={isOpen} close={() => setOpen(false)} />

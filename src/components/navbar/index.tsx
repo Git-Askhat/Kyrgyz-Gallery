@@ -9,6 +9,7 @@ import Dropdown from '../dropdown/index';
 import MainSearch from '../main_search/nav_search';
 
 import SignIn from '../sign-in/index';
+import SvgProfile from '../../assets/svg/Profile';
 
 interface ActiveUrl {
   activeUrl?: string;
@@ -19,7 +20,7 @@ interface changeBackground {
   scroll: boolean;
 }
 
-export default function Navbar(props: { active: string }) {
+export default function Navbar(props: { active: string; token?: boolean }) {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -72,9 +73,11 @@ export default function Navbar(props: { active: string }) {
       <Nav scroll={scrolled}>
         <NavSml scroll={scrolled}>
           <Div>
-            <Logo>
-              <SvgLogo />
-            </Logo>
+            <Link to="/">
+              <Logo>
+                <SvgLogo />
+              </Logo>
+            </Link>
             <Menu1 scroll={scrolled}>
               {NavbarItems.map((item, index) => {
                 return (
@@ -93,10 +96,16 @@ export default function Navbar(props: { active: string }) {
           </Div>
           <Menu>
             <NavbarLink to='discover'>Discover</NavbarLink>
-            <Options onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-              <SvgOptions />
-              {dropdown && <Dropdown />}
-            </Options>
+            {props.token ? (
+              <Link to='/profile'>
+                <SvgProfile className='Profile' />
+              </Link>
+            ) : (
+              <Options onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                <SvgOptions />
+                {dropdown && <Dropdown />}
+              </Options>
+            )}
             <Sign onClick={modalOpen}>Sign In</Sign>
           </Menu>
         </NavSml>
@@ -112,7 +121,7 @@ const Nav = styled.div<changeBackground>`
   height: 150px;
   background: ${(props) =>
     props.scroll
-      ? ''
+      ? null
       : 'linear-gradient(180deg, #202020 0%, rgba(0, 0, 0, 0) 100%)'};
   flex-wrap: wrap;
   position: fixed;
@@ -126,7 +135,7 @@ const NavSml = styled.div<changeBackground>`
   padding: 0 25px 0 51px;
   display: flex;
   justify-content: space-between;
-  background: ${(props) => (props.scroll ? '#10161E' : '')};
+  background: ${(props) => (props.scroll ? '#10161E' : null)};
 `;
 
 const Logo = styled(SvgLogo)`
@@ -149,6 +158,10 @@ const Search = styled.div<changeBackground>`
 const Menu = styled.div`
   display: flex;
   align-items: center;
+
+  .Profile {
+    margin-left: 40px;
+  }
 `;
 
 const NavbarLink = styled(Link)<ActiveUrl>`
