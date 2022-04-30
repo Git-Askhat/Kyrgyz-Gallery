@@ -6,16 +6,22 @@ import SvgGoogle from '../../assets/svg/Google';
 import SvgFacebook from '../../assets/svg/Facebook';
 import SvgClose from '../../assets/svg/CloseSign';
 
-export default function SignUp(props: { isOpen: any; close: any }) {
-  if (!props.isOpen) return null;
+export default function SignUp(props: { isOpen2: any; close2: any; signInModel: any }) {
+  if (!props.isOpen2) return null;
 
   const [isOpen, setOpen] = useState(false);
   const inputRef = useRef(null);
 
+  const modalOpen = () => {
+    props.close2();
+    props.signInModel();
+  };
+
+
   return (
     <Background>
       <Container>
-        <SvgClose className='Close' onClick={props.close} />
+        <SvgClose className='Close' onClick={props.close2} />
         <Logo>
           <SvgLogo />
         </Logo>
@@ -44,7 +50,7 @@ export default function SignUp(props: { isOpen: any; close: any }) {
         <SignButton>Sign Up</SignButton>
         <Links>
           <span>Have an account?</span>
-          <ButtonSign>Sign up</ButtonSign>
+          <ButtonSign onClick={modalOpen}>Sign in</ButtonSign>
         </Links>
       </Container>
     </Background>

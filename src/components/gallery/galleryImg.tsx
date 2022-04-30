@@ -10,7 +10,7 @@ import profile from '../../assets/images/profile/profile.jpg';
 import SvgViews from '../../assets/svg/Views';
 import SvgLocation from '../../assets/svg/Location';
 import { commentData } from '../details/comment.data';
-import './galleryImg.scss';
+import Hover from './hover';
 
 export default function Gallery() {
   const [model, setModel] = useState(false);
@@ -29,22 +29,25 @@ export default function Gallery() {
             <DivImg>
               <SvgClose onClick={() => setModel(false)} className='close-svg' />
               <img src={tempImgSrc} alt='' className='image' />
-              <div className="views-location">
-                <div className="views">
+              <div className='views-location'>
+                <div className='views'>
                   <SvgViews />
                   <p>19K Views</p>
                 </div>
-                <div className="location">
+                <div className='location'>
                   <SvgLocation />
                   <p>Naryn/Kel-Suu</p>
                 </div>
               </div>
-              <Tags>
-                <TagButton>mountains</TagButton>
-                <TagButton>lake</TagButton>
-                <TagButton>winter</TagButton>
-                <TagButton>snow</TagButton>
-              </Tags>
+              <div className='tags'>
+                <p className='related'>Related Tags</p>
+                <Tags>
+                  <TagButton>mountains</TagButton>
+                  <TagButton>lake</TagButton>
+                  <TagButton>winter</TagButton>
+                  <TagButton>snow</TagButton>
+                </Tags>
+              </div>
               {/* <img src={tempImgSrc} alt='' className='image' /> */}
             </DivImg>
             <DivComment>
@@ -94,6 +97,7 @@ export default function Gallery() {
                   <textarea
                     name=''
                     id=''
+                    // resize="none" //unsure it may used in css
                     // rows={4}
                     // cols={30}
                     className='text-area'></textarea>
@@ -114,20 +118,22 @@ export default function Gallery() {
                   </CommentsDiv>
                 );
               })}
+
+              <button className='more-comment'>+ 99 more</button>
             </DivComment>
           </DivContainer>
         </DetailImg>
       </DetailsContainer>
-      <div className='gallery'>
+      <GalleryContainer>
         {imgData.map((item, index) => {
           return (
             <div className='pics' key={index} onClick={() => getImg(item.src)}>
               <img src={item.src} style={{ width: '100%' }} />
-              {/* <Hover /> */}
+              <Hover />
             </div>
           );
         })}
-      </div>
+      </GalleryContainer>
     </>
   );
 }
@@ -197,6 +203,12 @@ const DivImg = styled.div`
       }
     }
   }
+
+  .tags {
+    p {
+      margin-top: 130px;
+    }
+  }
 `;
 
 const DivComment = styled(DivImg)`
@@ -221,7 +233,7 @@ const DivComment = styled(DivImg)`
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
-    
+
     color: #000000;
     margin-top: 25px;
   }
@@ -275,6 +287,25 @@ const DivComment = styled(DivImg)`
         }
       }
     }
+  }
+
+  .more-comment {
+    width: 100%;
+    padding: 0.3rem 0;
+    background: #5b5b5b;
+    border: none;
+    margin-top: 32px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    font-family: 'Roboto' 'san-serif';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #ffffff;
+    margin-bottom: 150px;
   }
 `;
 
@@ -372,7 +403,19 @@ const CommentButton = styled.button`
 
 const Tags = styled.div`
   width: 100%;
-  margin-top: 100px;
+  margin-top: 14px;
+  margin-bottom: 100px;
+
+  .related {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+
+    color: #000000;
+    margin-left: 6px;
+  }
 `;
 
 const TagButton = styled.button`
@@ -380,6 +423,8 @@ const TagButton = styled.button`
   background: transparent;
   border-radius: 24px;
   padding: 0.3rem 1rem;
+  margin: 0 6px;
+  cursor: pointer;
 
   font-family: 'Roboto' 'san-serif';
   font-style: normal;
@@ -389,4 +434,49 @@ const TagButton = styled.button`
   /* identical to box height */
 
   color: #33363a;
+`;
+
+const GalleryContainer = styled.div`
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  column-count: 3;
+  -webkit-column-width: 33%;
+  -moz-column-width: 33%;
+  column-width: 33%;
+  padding: 0 12px;
+
+  @media screen and (max-width: 991px) {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+  }
+
+  @media screen and (max-width: 480px) {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+    -webkit-column-width: 100%;
+    -moz-column-width: 100%;
+    column-width: 100%;
+  }
+
+  .pics {
+    // -webkit-transition: all 350ms ease;
+    // transition: all 350ms ease;
+    cursor: pointer;
+    margin-bottom: 12px;
+    position: relative;
+
+    /* .img-hover {
+      display: flex;
+    } */
+  }
+
+  /* .pics:hover {
+    filter: opacity(0.8);
+  } */
+
+  .pics:hover .img-hover {
+    display: flex;
+  }
 `;

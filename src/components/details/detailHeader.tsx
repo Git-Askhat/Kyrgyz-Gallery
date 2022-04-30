@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 
 import SvgLike from '../../assets/svg/Like';
@@ -14,7 +15,9 @@ export default function DetailHeader() {
         <ProfileDiv>
           <img src={profile} alt='' className='image-prof' />
           <div className='user-info'>
-            <p className='user'>Askhat Shailoobekov</p>
+            <Link to='/profile' className="link">
+              <p className='user'>Askhat Shailoobekov</p>
+            </Link>
             <p className='user'>132 followers</p>
           </div>
         </ProfileDiv>
@@ -30,7 +33,7 @@ export default function DetailHeader() {
         </LikeButton>
         <SaveButton>Save</SaveButton>
         <DownloadContainer>
-          <DownloadButton>Free Download</DownloadButton>
+          <DownloadButton>Download</DownloadButton>
           <Resolution>
             <SvgDownload />
           </Resolution>
@@ -79,6 +82,11 @@ const ProfileDiv = styled.div`
     align-items: center;
     margin-left: 12px;
 
+    .link {
+      text-decoration: none;
+      color: #000000;
+    }
+
     span {
       font-style: normal;
       font-weight: 400;
@@ -93,7 +101,7 @@ const ProfileDiv = styled.div`
 
 const StyledButton = styled.button`
   border-radius: 3px;
-  padding: 0.7rem 2rem;
+  padding: 0.5rem 2rem;
   border: none;
   cursor: pointer;
 
@@ -122,6 +130,7 @@ const CoffeeButton = styled(StyledButton)`
 const LikeButton = styled(StyledButton)`
   background: transparent;
   border: 1px solid #000000;
+  /* padding: 0.5rem 2rem; */
   margin-right: 10px;
   display: flex;
   justify-content: center;
@@ -139,6 +148,7 @@ const LikeButton = styled(StyledButton)`
 const SaveButton = styled(StyledButton)`
   background: transparent;
   border: 1px solid #000000;
+  /* padding: 0.5rem 2rem; */
 
   font-weight: 400;
   font-size: 16px;

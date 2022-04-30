@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 import NavbarwithSearch from '../navbar/navbar.with.search';
 import profile from '../../assets/images/profile/profile.jpg';
-import GalleryImg from '../gallery/galleryImg';
 import Instagram from '../../assets/svg/Instagram';
 import Telegram from '../../assets/svg/Telegram';
 import SvgLink from '../../assets/svg/Link';
 import '../../styles/global.scss';
+import MediaTabs from './tabs/index'
 
 import { CategoryTab, CategoryTabs } from './tabs/tabs'
 
@@ -87,34 +87,7 @@ const handleChange = (e: any, value: any) => {
           </div>
         </ProfileContainer>
       </ProfileWrapper>
-      <Media>
-        <CategoryTabs selectedTab={activeTab} onChange={handleChange}>
-          <CategoryTab label='Photos' value={1}></CategoryTab>
-          <CategoryTab label='Videos' value={2}></CategoryTab>
-          <CategoryTab label='Vectors' value={3}></CategoryTab>
-          <CategoryTab label='3D Models' value={4}></CategoryTab>
-        </CategoryTabs>
-        <div className='line-categ' />
-        <Popularity>
-          <div className='recent'>
-            <div className='title'>
-              <p>Recent</p>
-            </div>
-            <div className='line'>
-              <div />
-            </div>
-          </div>
-          <div className='popular'>
-            <div className='title'>
-              <p>Popular</p>
-            </div>
-            <div className='line'>
-              <div />
-            </div>
-          </div>
-        </Popularity>
-        <GalleryImg />
-      </Media>
+      <MediaTabs />
     </>
   );
 }
@@ -244,6 +217,7 @@ const Description = styled.div`
 `;
 
 const Media = styled.div`
+  margin-top: 80px;
   .line-categ {
     position: relative;
     width: 100%;
@@ -290,8 +264,8 @@ const Popularity = styled.div`
       font-family: 'Quicksand' 'san-serif';
       font-style: normal;
       font-weight: normal;
-      font-size: 24px;
-      line-height: 30px;
+      font-size: 20px;
+      line-height: 26px;
     }
     .line {
       display: flex;
@@ -314,8 +288,8 @@ const Popularity = styled.div`
       font-family: 'Quicksand' 'san-serif';
       font-style: normal;
       font-weight: normal;
-      font-size: 24px;
-      line-height: 30px;
+      font-size: 20px;
+      line-height: 26px;
     }
     .line {
       display: flex;

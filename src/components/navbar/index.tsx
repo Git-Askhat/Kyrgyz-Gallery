@@ -10,6 +10,7 @@ import MainSearch from '../main_search/nav_search';
 
 import SignIn from '../sign-in/index';
 import SvgProfile from '../../assets/svg/Profile';
+import SignUp from '../sign-up';
 
 interface ActiveUrl {
   activeUrl?: string;
@@ -26,6 +27,7 @@ export default function Navbar(props: { active: string; token?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
 
   const [isOpen, setOpen] = useState(false);
+  const [isOpen2, setOpen2] = useState(false);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -73,7 +75,7 @@ export default function Navbar(props: { active: string; token?: boolean }) {
       <Nav scroll={scrolled}>
         <NavSml scroll={scrolled}>
           <Div>
-            <Link to="/">
+            <Link to='/'>
               <Logo>
                 <SvgLogo />
               </Logo>
@@ -95,22 +97,43 @@ export default function Navbar(props: { active: string; token?: boolean }) {
             </Search>
           </Div>
           <Menu>
+            {/* <NavbarLink to='discover'><Main_Dropdown /></NavbarLink> */}
+            {/* {props.token ? ( */}
+            {/* <Link to='/profile'> */}
+            <>
             <NavbarLink to='discover'>Discover</NavbarLink>
-            {props.token ? (
-              <Link to='/profile'>
-                <SvgProfile className='Profile' />
-              </Link>
-            ) : (
-              <Options onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-                <SvgOptions />
-                {dropdown && <Dropdown />}
-              </Options>
-            )}
+              <SvgProfile
+                className='profile'
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+              />
+              <Dropdown dropdown={dropdown} />
+              {/* <ul className='nav__submenu'>
+                <li className='nav__submenu-item '>
+                  <a>Our Company</a>
+                </li>
+                <li className='nav__submenu-item '>
+                  <a>Our Team</a>
+                </li>
+                <li className='nav__submenu-item '>
+                  <a>Our Portfolio</a>
+                </li>
+              </ul> */}
+            </>
+
+            {/* ) : (
+                </Link>
+               <Options onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                 <SvgOptions />
+                 {dropdown && <Dropdown dropdown={dropdown}/>}
+               </Options>
+             )} */}
             <Sign onClick={modalOpen}>Sign In</Sign>
           </Menu>
         </NavSml>
       </Nav>
-      <SignIn isOpen={isOpen} close={() => setOpen(false)} />
+      <SignIn isOpen={isOpen} close={() => setOpen(false)} signUpModel={() => setOpen2(true)}/>
+      <SignUp isOpen2={isOpen2} close2={() => setOpen2(false)} signInModel={() => setOpen(true)}/>
     </>
   );
 }
@@ -159,8 +182,20 @@ const Menu = styled.div`
   display: flex;
   align-items: center;
 
-  .Profile {
+  .profile {
     margin-left: 40px;
+    cursor: pointer;
+
+  }
+  /* .nav__submenu {
+    display: none;
+  }
+
+  .profile:hover .nav__submenu {
+        display: block;
+        z-index: 100;   
+    } */
+  
   }
 `;
 

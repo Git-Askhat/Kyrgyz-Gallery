@@ -8,19 +8,25 @@ import SvgGoogle from '../../assets/svg/Google';
 import SvgFacebook from '../../assets/svg/Facebook';
 import SvgClose from '../../assets/svg/CloseSign';
 
-export default function SignIn(props: { isOpen: any; close: any }) {
+export default function SignIn(props: { isOpen: any; close: any; signUpModel: any }) {
   if (!props.isOpen) return null;
 
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
 
 
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen2, setOpen2] = useState(false);
   const inputRef = useRef(null);
 
   const modalOpen = () => {
-    setOpen(true);
+    props.close();
+    props.signUpModel();
   };
+
+  // const multiHandler = () => {
+  //   modalOpen(), 
+  //   props.close()
+  // }
 
   // handleSubmit = (event: { preventDefault: () => void; }) => {
   //   event.preventDefault();
@@ -56,12 +62,12 @@ export default function SignIn(props: { isOpen: any; close: any }) {
             <SignButton>Sign In</SignButton>
             <Links>
               <ButtonForgot>Forgot password?</ButtonForgot>
-              <ButtonSign onClick={modalOpen}>Sign up</ButtonSign>
+              <ButtonSign onClick={modalOpen }>Sign up</ButtonSign>
             </Links>
           </form>
         </Container>
       </Background>
-      <SignUp isOpen={isOpen} close={() => setOpen(false)} />
+      
     </>
   );
 }
