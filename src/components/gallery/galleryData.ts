@@ -27,6 +27,8 @@ import vector4 from '../../assets/vectors/vector4.png';
 import vector5 from '../../assets/vectors/vector5.png';
 import vector6 from '../../assets/vectors/vector6.png';
 
+// import brakedance from '../../assets/3D-models/brakedance.glb';
+
 export const imgData = [
     {
         id: 1,
@@ -138,4 +140,11 @@ export const vecData = [
         id: 6,
         src: vector6,
     },
+]
+
+export const modelData = [
+    // {
+    //     id: 1,
+    //     src: brakedance,
+    // }
 ]

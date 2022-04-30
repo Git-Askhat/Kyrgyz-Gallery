@@ -8,48 +8,66 @@ import SvgGoogle from '../../assets/svg/Google';
 import SvgFacebook from '../../assets/svg/Facebook';
 import SvgClose from '../../assets/svg/CloseSign';
 
-export default function SignIn(props: { isOpen: any; close: any }) {
+export default function SignIn(props: { isOpen: any; close: any; signUpModel: any }) {
   if (!props.isOpen) return null;
 
-  const [isOpen, setOpen] = useState(false);
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+
+
+  const [isOpen2, setOpen2] = useState(false);
   const inputRef = useRef(null);
 
   const modalOpen = () => {
-    setOpen(true);
+    props.close();
+    props.signUpModel();
   };
+
+  // const multiHandler = () => {
+  //   modalOpen(), 
+  //   props.close()
+  // }
+
+  // handleSubmit = (event: { preventDefault: () => void; }) => {
+  //   event.preventDefault();
+    
+  //   this.setState({ email: '', password: ''});
+  // }
 
   return (
     <>
-    <Background>
-      <Container>
-        <SvgClose className='Close' onClick={props.close} />
-        <Logo>
-          <SvgLogo />
-        </Logo>
-        <Buttons>
-          <ButtonGoogle>
-            Sign in with <SvgGoogle className='Logo' />
-          </ButtonGoogle>
-          <ButtonFacebook>
-            Sign in with <SvgFacebook className='Logo' />
-          </ButtonFacebook>
-        </Buttons>
-        <InputName
-          ref={inputRef}
-          placeholder='Username or E-mail'
-          // onMouseEnter={() => {
-          //   inputRef.current.focus();
-          // }}
-        />
-        <InputName type='password' ref={inputRef} placeholder='Password' />
-        <SignButton>Sign In</SignButton>
-        <Links>
-          <ButtonForgot>Forgot password?</ButtonForgot>
-          <ButtonSign onClick={modalOpen}>Sign up</ButtonSign>
-        </Links>
-      </Container>
-    </Background>
-    <SignUp isOpen={isOpen} close={() => setOpen(false)} />
+      <Background>
+        <Container>
+          <SvgClose className='Close' onClick={props.close} />
+          <Logo>
+            <SvgLogo />
+          </Logo>
+          <Buttons>
+            <ButtonGoogle>
+              Sign in with <SvgGoogle className='Logo' />
+            </ButtonGoogle>
+            <ButtonFacebook>
+              Sign in with <SvgFacebook className='Logo' />
+            </ButtonFacebook>
+          </Buttons>
+          <form /*onSubmit={handleSubmit}*/>
+            <InputName
+              type='email'
+              // value={email}
+              required
+              ref={inputRef}
+              placeholder='Username or E-mail'
+            />
+            <InputName type='password' ref={inputRef} placeholder='Password' />
+            <SignButton>Sign In</SignButton>
+            <Links>
+              <ButtonForgot>Forgot password?</ButtonForgot>
+              <ButtonSign onClick={modalOpen }>Sign up</ButtonSign>
+            </Links>
+          </form>
+        </Container>
+      </Background>
+      
     </>
   );
 }
@@ -161,8 +179,12 @@ const ButtonForgot = styled.button`
   border: none;
   padding: 5px;
   font-size: 18px;
-  color: #0B1E43;
+  color: #0b1e43;
   cursor: pointer;
 `;
 
-const ButtonSign = styled(ButtonForgot)``
+const ButtonSign = styled(ButtonForgot)``;
+function password(password: any, arg1: string) {
+  throw new Error('Function not implemented.');
+}
+

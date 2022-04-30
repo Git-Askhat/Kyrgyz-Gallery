@@ -9,6 +9,8 @@ import Dropdown from '../dropdown/index';
 import MainSearch from '../main_search/nav_search';
 
 import SignIn from '../sign-in/index';
+import SvgProfile from '../../assets/svg/Profile';
+import SignUp from '../sign-up';
 
 interface ActiveUrl {
   activeUrl?: string;
@@ -19,12 +21,13 @@ interface changeBackground {
   scroll: boolean;
 }
 
-export default function Navbar(props: { active: string }) {
+export default function Navbar(props: { active: string; token?: boolean }) {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const [isOpen, setOpen] = useState(false);
+  const [isOpen2, setOpen2] = useState(false);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -72,9 +75,11 @@ export default function Navbar(props: { active: string }) {
       <Nav scroll={scrolled}>
         <NavSml scroll={scrolled}>
           <Div>
-            <Logo>
-              <SvgLogo />
-            </Logo>
+            <Link to='/'>
+              <Logo>
+                <SvgLogo />
+              </Logo>
+            </Link>
             <Menu1 scroll={scrolled}>
               {NavbarItems.map((item, index) => {
                 return (
@@ -92,16 +97,43 @@ export default function Navbar(props: { active: string }) {
             </Search>
           </Div>
           <Menu>
+            {/* <NavbarLink to='discover'><Main_Dropdown /></NavbarLink> */}
+            {/* {props.token ? ( */}
+            {/* <Link to='/profile'> */}
+            <>
             <NavbarLink to='discover'>Discover</NavbarLink>
-            <Options onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-              <SvgOptions />
-              {dropdown && <Dropdown />}
-            </Options>
+              <SvgProfile
+                className='profile'
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+              />
+              <Dropdown dropdown={dropdown} />
+              {/* <ul className='nav__submenu'>
+                <li className='nav__submenu-item '>
+                  <a>Our Company</a>
+                </li>
+                <li className='nav__submenu-item '>
+                  <a>Our Team</a>
+                </li>
+                <li className='nav__submenu-item '>
+                  <a>Our Portfolio</a>
+                </li>
+              </ul> */}
+            </>
+
+            {/* ) : (
+                </Link>
+               <Options onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                 <SvgOptions />
+                 {dropdown && <Dropdown dropdown={dropdown}/>}
+               </Options>
+             )} */}
             <Sign onClick={modalOpen}>Sign In</Sign>
           </Menu>
         </NavSml>
       </Nav>
-      <SignIn isOpen={isOpen} close={() => setOpen(false)} />
+      <SignIn isOpen={isOpen} close={() => setOpen(false)} signUpModel={() => setOpen2(true)}/>
+      <SignUp isOpen2={isOpen2} close2={() => setOpen2(false)} signInModel={() => setOpen(true)}/>
     </>
   );
 }
@@ -112,7 +144,7 @@ const Nav = styled.div<changeBackground>`
   height: 150px;
   background: ${(props) =>
     props.scroll
-      ? ''
+      ? null
       : 'linear-gradient(180deg, #202020 0%, rgba(0, 0, 0, 0) 100%)'};
   flex-wrap: wrap;
   position: fixed;
@@ -126,7 +158,7 @@ const NavSml = styled.div<changeBackground>`
   padding: 0 25px 0 51px;
   display: flex;
   justify-content: space-between;
-  background: ${(props) => (props.scroll ? '#10161E' : '')};
+  background: ${(props) => (props.scroll ? '#10161E' : null)};
 `;
 
 const Logo = styled(SvgLogo)`
@@ -149,6 +181,22 @@ const Search = styled.div<changeBackground>`
 const Menu = styled.div`
   display: flex;
   align-items: center;
+
+  .profile {
+    margin-left: 40px;
+    cursor: pointer;
+
+  }
+  /* .nav__submenu {
+    display: none;
+  }
+
+  .profile:hover .nav__submenu {
+        display: block;
+        z-index: 100;   
+    } */
+  
+  }
 `;
 
 const NavbarLink = styled(Link)<ActiveUrl>`
