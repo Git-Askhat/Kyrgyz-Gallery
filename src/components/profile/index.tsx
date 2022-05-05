@@ -8,8 +8,8 @@ import Telegram from '../../assets/svg/Telegram';
 import SvgLink from '../../assets/svg/Link';
 import '../../styles/global.scss';
 import MediaTabs from './tabs/index'
+import PhotosTab from './tabs/photos/index'
 
-import { CategoryTab, CategoryTabs } from './tabs/tabs'
 
 interface Info {
   following: number;
@@ -88,6 +88,7 @@ const handleChange = (e: any, value: any) => {
         </ProfileContainer>
       </ProfileWrapper>
       <MediaTabs />
+      {/* <PhotosTab /> */}
     </>
   );
 }
@@ -109,7 +110,7 @@ const ProfileWrapper = styled.div`
     height: 260px;
     object-fit: cover;
     border-radius: 50%;
-    z-index: 100;
+    z-index: 1;
   }
 `;
 
