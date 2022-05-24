@@ -19,7 +19,7 @@ export default function PhotosComponent() {
         <Navbar active='/photos' token={true}/>
         <MainSearch search_text='Image' />
       </Background>
-      <SignIn isOpen={isOpen} close={() => setOpen(false)} />
+      <SignIn isOpen={isOpen} close={() => setOpen(false)} signUpModel={undefined} />
       <SwipeToSlide />
       <GalleryIV />
     </Div>

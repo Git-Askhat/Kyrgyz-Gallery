@@ -71,7 +71,7 @@ export default function NavbarwithSearch(props: { token?: boolean }) {
           <Sign onClick={modalOpen}>Sign In</Sign>
         </Menu>
       </Nav>
-      <SignIn isOpen={isOpen} close={() => setOpen(false)} />
+      {/* <SignIn isOpen={isOpen} close={() => setOpen(false)} /> */}
     </>
   );
 }

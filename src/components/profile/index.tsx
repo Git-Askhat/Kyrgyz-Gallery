@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import NavbarwithSearch from '../navbar/navbar.with.search';
+import Navbar from '../navbar/index'
 import profile from '../../assets/images/profile/profile.jpg';
 import Instagram from '../../assets/svg/Instagram';
 import Telegram from '../../assets/svg/Telegram';
@@ -49,6 +50,7 @@ const handleChange = (e: any, value: any) => {
   return (
     <>
       <NavbarwithSearch />
+      {/* <Navbar isTransparent={true}/> */}
       <ProfileWrapper>
         <Line />
         <ProfileContainer>
@@ -101,7 +103,7 @@ const Line = styled.div`
 `;
 
 const ProfileWrapper = styled.div`
-  position: relative;
+  /* position: absolute; */
   width: 100%;
   /* background: gray; */
 

@@ -19,9 +19,10 @@ interface ActiveUrl {
 
 interface changeBackground {
   scroll: boolean;
+  isTransparent?: boolean;
 }
 
-export default function Navbar(props: { active: string; token?: boolean }) {
+export default function Navbar(props: { active?: string; token?: boolean; isTransparent?: boolean }) {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -71,9 +72,9 @@ export default function Navbar(props: { active: string; token?: boolean }) {
   };
 
   return (
-    <>
-      <Nav scroll={scrolled}>
-        <NavSml scroll={scrolled}>
+    <Container>
+      <Nav scroll={scrolled} isTransparent={props.isTransparent}>
+        <NavSml scroll={scrolled} isTransparent={props.isTransparent}>
           <Div>
             <Link to='/'>
               <Logo>
@@ -92,7 +93,7 @@ export default function Navbar(props: { active: string; token?: boolean }) {
                 );
               })}
             </Menu1>
-            <Search scroll={scrolled}>
+            <Search scroll={scrolled} isTransparent={props.isTransparent}>
               <MainSearch search_text='photos' />
             </Search>
           </Div>
@@ -134,16 +135,23 @@ export default function Navbar(props: { active: string; token?: boolean }) {
       </Nav>
       <SignIn isOpen={isOpen} close={() => setOpen(false)} signUpModel={() => setOpen2(true)}/>
       <SignUp isOpen2={isOpen2} close2={() => setOpen2(false)} signInModel={() => setOpen(true)}/>
-    </>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  width: 100%;
+  /* height: 150px;   //Have to change later, make clean code */
+  position: relative;
+  display: flex;
+`
 
 const Nav = styled.div<changeBackground>`
   display: flex;
   width: 100%;
   height: 150px;
   background: ${(props) =>
-    props.scroll
+    props.scroll || props.isTransparent
       ? null
       : 'linear-gradient(180deg, #202020 0%, rgba(0, 0, 0, 0) 100%)'};
   flex-wrap: wrap;
@@ -158,7 +166,7 @@ const NavSml = styled.div<changeBackground>`
   padding: 0 25px 0 51px;
   display: flex;
   justify-content: space-between;
-  background: ${(props) => (props.scroll ? '#10161E' : null)};
+  background: ${(props) => (props.scroll || props.isTransparent ? '#10161E' : null)};
 `;
 
 const Logo = styled(SvgLogo)`

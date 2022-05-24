@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import SvgLogo from '../../assets/svg/LogoColored';
@@ -6,17 +6,44 @@ import SvgGoogle from '../../assets/svg/Google';
 import SvgFacebook from '../../assets/svg/Facebook';
 import SvgClose from '../../assets/svg/CloseSign';
 
-export default function SignUp(props: { isOpen2: any; close2: any; signInModel: any }) {
+export default function SignUp(props: {
+  isOpen2: any;
+  close2: any;
+  signInModel: any;
+}) {
   if (!props.isOpen2) return null;
-
-  const [isOpen, setOpen] = useState(false);
-  const inputRef = useRef(null);
 
   const modalOpen = () => {
     props.close2();
     props.signInModel();
   };
 
+  const initialValues = {
+    fullName: '',
+    email: '',
+    password: '',
+  };
+
+  const [{ fullName, email, password }, setInputValues] =
+    useState(initialValues);
+
+  function resetValues() {
+    setInputValues({ ...initialValues });
+  }
+
+  const handleChange = (e: any) => {
+    setInputValues((values) => ({
+      ...values,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    console.log({ fullName, email, password });
+    resetValues();
+  };
 
   return (
     <Background>
@@ -38,20 +65,34 @@ export default function SignUp(props: { isOpen2: any; close2: any; signInModel: 
           OR
           <hr />
         </Or>
-        <InputName
-          ref={inputRef}
-          placeholder='Full name'
-          // onMouseEnter={() => {
-          //   inputRef.current.focus();
-          // }}
-        />
-        <InputEmail type='text' ref={inputRef} placeholder='E-mail' />
-        <InputPass type='password' ref={inputRef} placeholder='Password' />
-        <SignButton>Sign Up</SignButton>
-        <Links>
-          <span>Have an account?</span>
-          <ButtonSign onClick={modalOpen}>Sign in</ButtonSign>
-        </Links>
+        <form action='' onSubmit={handleSubmit}>
+          <InputName
+            type='text'
+            name='fullName'
+            value={fullName}
+            onChange={handleChange}
+            placeholder='Full name'
+          />
+          <InputEmail
+            type='text'
+            name='email'
+            value={email}
+            onChange={handleChange}
+            placeholder='E-mail'
+          />
+          <InputPass
+            type='password'
+            name='password'
+            value={password}
+            onChange={handleChange}
+            placeholder='Password'
+          />
+          <SignButton onSubmit={handleSubmit}>Sign Up</SignButton>
+          <Links>
+            <span>Have an account?</span>
+            <ButtonSign onClick={modalOpen}>Sign in</ButtonSign>
+          </Links>
+        </form>
       </Container>
     </Background>
   );
