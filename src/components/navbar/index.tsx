@@ -13,6 +13,7 @@ import MainSearch from '../main_search/nav_search';
 import SignIn from '../sign-in/index';
 import SvgProfile from '../../assets/svg/Profile';
 import SignUp from '../sign-up';
+import { auth, createUserProfileDocument } from '../../firebase/firebase.utils'
 
 import { actionCreators, State } from '../../redux/index';
 import { bindActionCreators } from 'redux';
@@ -36,7 +37,8 @@ export default function Navbar(props: {
   const [dropdown, setDropdown] = useState(false);
   const [dropdownLang, setDropdownLang] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
+  const [currentUser, setCurrentUser]: any = useState(null);
+  // console.log(currUser);
   const [isOpen, setOpen] = useState(false);
   const [isOpen2, setOpen2] = useState(false);
 
@@ -58,6 +60,25 @@ export default function Navbar(props: {
   const modalOpen = () => {
     setOpen(true);
   };
+
+  let unsubscribeFromAuth: any | null = null;
+
+  const componentDidMount = () => {
+    unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
+      setCurrentUser(user);
+      createUserProfileDocument(user, "");
+
+      console.log("New user: ", user);
+    })
+  }
+
+  componentDidMount();
+
+  const componentWillUnmount = () => {
+    unsubscribeFromAuth();
+  }
+
+  componentWillUnmount();
 
   return (
     <Container>
@@ -91,29 +112,27 @@ export default function Navbar(props: {
             {/* <NavbarLink to='discover'><Main_Dropdown /></NavbarLink> */}
             {/* {props.token ? ( */}
             {/* <Link to='/profile'> */}
-            <>
               <LanguageDiv
                 onMouseEnter={() => setDropdownLang(true)}
                 onMouseLeave={() => setDropdownLang(false)}>
                 <SvgLanguage className='profile'/>
                 {dropdownLang && <LanguageDropdown />}
-              </LanguageDiv>
+                </LanguageDiv>
+            {currentUser ?
               <DropdownDiv
                 onMouseEnter={() => setDropdown(true)}
                 onMouseLeave={() => setDropdown(false)}>
                 <SvgProfile className='profile'></SvgProfile>
                 {dropdown && <Dropdown />}
-              </DropdownDiv>
-            </>
+              </DropdownDiv> : 
+            <Options >
+              <SvgOptions />
+              <Sign onClick={modalOpen}>{t('sign-in')}</Sign>
+              {/* {dropdown && <Dropdown dropdown={dropdown}/>} */}
+            </Options>
 
-            {/* ) : (
-                </Link>
-               <Options onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-                 <SvgOptions />
-                 {dropdown && <Dropdown dropdown={dropdown}/>}
-               </Options>
-             )} */}
-            <Sign onClick={modalOpen}>{t('sign-in')}</Sign>
+            }
+           
           </Menu>
         </NavSml>
       </Nav>
@@ -249,3 +268,6 @@ const Div = styled.div`
   display: flex;
   align-items: center;
 `;
+
+
+

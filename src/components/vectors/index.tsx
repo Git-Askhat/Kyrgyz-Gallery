@@ -6,14 +6,16 @@ import SwipeToSlide from '../carousel/index';
 import MainSearch from '../main_search/index'
 import Gallery from '../gallery/galleryVector';
 import '../../styles/global.scss';
+import { useTranslation } from 'react-i18next';
 
 export default function VectorsComponent() {
+  const { t } = useTranslation();
   return (
     <Div>
       <Container>
         <Navbar active='/vectors' />
         <img src='./vector.svg' alt='' />
-        <MainSearch search_text="videos"/>
+        <MainSearch search_text={t('search_text')} aUrl="Image" />
       </Container>
       <SwipeToSlide />
       <Gallery />

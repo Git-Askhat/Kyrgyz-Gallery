@@ -5,6 +5,7 @@ import SvgLogo from '../../assets/svg/LogoColored';
 import SvgGoogle from '../../assets/svg/Google';
 import SvgFacebook from '../../assets/svg/Facebook';
 import SvgClose from '../../assets/svg/CloseSign';
+import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 
 export default function SignUp(props: {
   isOpen2: any;
@@ -38,11 +39,22 @@ export default function SignUp(props: {
     }));
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit =async (e: any) => {
     e.preventDefault();
 
-    console.log({ fullName, email, password });
-    resetValues();
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+
+      await createUserProfileDocument(user, { fullName });
+      resetValues();
+      props.close2();
+    } catch (error) {
+      console.error(error);
+    }
+    // console.log({ fullName, email, password });
   };
 
   return (

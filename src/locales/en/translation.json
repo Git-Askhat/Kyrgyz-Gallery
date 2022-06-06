@@ -4,10 +4,24 @@
     "vectors": "Vectors",
     "3d-models": "3D models",
     "language": "Change language",
-    "sign-in": "Sign In",
-    "sign-up": "Sign Up",
+    "sign-in": "Sign in",
+    "sign-up": "Sign up",
+    "sign-out": "Sign out",
     "about-us": "About us",
     "fqa": "FQA",
-    "search_text": "Search images, videos and 3D models"
+    "search_text": "Search images, videos and 3D models",
+
+    "chuy": "Chuy",
+    "issyk-kul": "Issyk-Kul",
+    "naryn": "Naryn",
+    "osh": "Osh",
+    "batken": "Batken",
+    "talas": "Talas",
+    "jalal-abad": "Jala-Abad",
+    "traditions": "Traditions",
+    "nomad_life": "Nomad Life",
+    "historical": "Historical",
+    "mountains": "Mountains",
+    "winter": "Winter"
 
 }

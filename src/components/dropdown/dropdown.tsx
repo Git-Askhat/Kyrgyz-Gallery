@@ -4,16 +4,23 @@ import { Link } from 'gatsby';
 
 import { DropdownItems } from './dropdownItems';
 import './dropdown.scss';
+import { useTranslation } from 'react-i18next';
+import { auth } from '../../firebase/firebase.utils';
 
 export default function Dropdown() {
   const [dropdown, setDropdown] = useState(false);
+  const { t } = useTranslation();
 
+  const signOutHandler = () => {
+    auth.signOut();
+    setDropdown(false);
+  }
   return (
     <>
       <ul
         className={dropdown ? 'services-submenu clicked' : 'services-submenu'}
         onClick={() => setDropdown(!dropdown)}>
-        {DropdownItems.map((item) => {
+        {/* {DropdownItems.map((item) => {
           return (
             <li key={item.id}>
               <StyledButton className={item.cName} onClick={() => setDropdown(false)}>
@@ -21,7 +28,42 @@ export default function Dropdown() {
               </StyledButton>
             </li>
           );
-        })}
+        })} */}
+        <li>
+          <StyledButton
+            className='dropdown-link'
+            onClick={signOutHandler}>
+            {t('sign-out')}
+          </StyledButton>
+        </li>
+        <li>
+          <StyledButton
+            className='dropdown-link'
+            onClick={() => setDropdown(false)}>
+            {t('sign-up')}
+          </StyledButton>
+        </li>
+        <li>
+          <StyledButton
+            className='dropdown-link'
+            onClick={() => setDropdown(false)}>
+            {t('sign-in')}
+          </StyledButton>
+        </li>
+        <li>
+          <StyledButton
+            className='dropdown-link'
+            onClick={() => setDropdown(false)}>
+            {t('fqa')}
+          </StyledButton>
+        </li>
+        <li>
+          <StyledButton
+            className='dropdown-link'
+            onClick={() => setDropdown(false)}>
+            {t('about-us')}
+          </StyledButton>
+        </li>
       </ul>
     </>
   );

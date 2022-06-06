@@ -1,38 +1,27 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
-
-import { actionCreators, State } from '../../redux';
 
 import './dropdown.scss';
 
 export default function LanguageDropdown() {
-  const dispatch = useDispatch();
-  const { englishLanguage, kyrgyzLanguage, russianLanguage } =
-    bindActionCreators(actionCreators, dispatch);
-  const lang = useSelector((state: State) => state.lang);
-
+  
   const [dropdown, setDropdown] = useState(false);
 
   const { i18n } = useTranslation();
 
   const engChange = () => {
-    englishLanguage('en');
-    i18n.changeLanguage(lang);
+    i18n.changeLanguage('en');
     setDropdown(false);
   };
 
   const kyrChange = () => {
-    kyrgyzLanguage('kg');
-    i18n.changeLanguage(lang);
+    i18n.changeLanguage('kg');
     setDropdown(false);
   };
 
   const rusChange = () => {
-    russianLanguage('ru');
-    i18n.changeLanguage(lang);
+    i18n.changeLanguage('ru');
     setDropdown(false);
   };
 
@@ -69,5 +58,3 @@ const StyledButton = styled.button`
   font-size: 16px;
   line-height: 19px;
 `;
-
-

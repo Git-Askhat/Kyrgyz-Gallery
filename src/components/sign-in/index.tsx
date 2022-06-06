@@ -6,6 +6,8 @@ import SvgGoogle from '../../assets/svg/Google';
 import SvgFacebook from '../../assets/svg/Facebook';
 import SvgClose from '../../assets/svg/CloseSign';
 
+import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
+
 export default function SignIn(props: {
   isOpen: any;
   close: any;
@@ -24,7 +26,7 @@ export default function SignIn(props: {
   };
 
   const [{ email, password }, setInputValues] = useState(initialValues);
-  
+
   function resetValues() {
     setInputValues({ ...initialValues });
   }
@@ -38,9 +40,19 @@ export default function SignIn(props: {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    
+
     console.log({ email, password });
     resetValues();
+  };
+
+  const [currUser, setCurrUser] = useState(null);
+
+  const handleGoogle = () => {
+    signInWithGoogle;
+
+    // auth.onAuthStateChanged((user) => {
+    //   setCurrUser(user);
+    // });
   };
 
   return (
@@ -52,7 +64,7 @@ export default function SignIn(props: {
             <SvgLogo />
           </Logo>
           <Buttons>
-            <ButtonGoogle>
+            <ButtonGoogle onClick={signInWithGoogle}>
               Sign in with <SvgGoogle className='Logo' />
             </ButtonGoogle>
             <ButtonFacebook>
@@ -75,7 +87,9 @@ export default function SignIn(props: {
               onChange={handleChange}
               placeholder='Password*'
             />
-            <SignButton type='submit' onSubmit={handleSubmit}>Sign In</SignButton>
+            <SignButton type='submit' onSubmit={handleSubmit}>
+              Sign In
+            </SignButton>
             <Links>
               <ButtonForgot>Forgot password?</ButtonForgot>
               <ButtonSign onClick={modalOpen}>Sign up</ButtonSign>

@@ -25,7 +25,7 @@ export default function MainSearch(props: {
           </a>
           <Down className='down' />
         </div>
-        {dropdown && <SearchDropdown />}
+      {dropdown && <SearchDropdown />}
       </DropDwon>
     </SearchContainer>
   );
@@ -101,7 +101,7 @@ const IconButton = styled.button`
 const DropDwon = styled.div`
   right: 30px;
   width: auto;
-  position: relative;
+  /* position: relative; */
   display: flex;
   align-items: center;
   justify-content:  flex-end;
