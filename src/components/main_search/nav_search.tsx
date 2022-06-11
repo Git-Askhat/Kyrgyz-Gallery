@@ -4,15 +4,15 @@ import styled from 'styled-components';
 import Search from '../../assets/svg/search';
 import Down from '../../assets/svg/Down';
 
-export default function MainSearch(props: { search_text: string }) {
+export default function MainSearch(props: { search_text: string, aUrl: string }) {
   return (
     <SearchContainer>
       <IconButton>
         <Search />
       </IconButton>
-      <SearchInput placeholder='Search images, videos and 3D models' />
+      <SearchInput placeholder={props.search_text} />
       <DropDwon>
-        <a>{props.search_text}</a>
+        <a>{props.aUrl}</a>
         <Down className='down' />
       </DropDwon>
     </SearchContainer>

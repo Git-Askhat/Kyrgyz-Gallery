@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
@@ -6,6 +6,8 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import { carouselData } from './data';
 import '../../styles/global.scss';
+import { useTranslation } from 'react-i18next';
+
 
 export default class SwipeToSlide extends Component {
   render() {
@@ -28,7 +30,6 @@ export default class SwipeToSlide extends Component {
             return (
               <div>
                 <Small>
-                  {/* <a href={item.link}> */}
                   <div>
                     <div>
                       <a href={item.link}>
@@ -37,7 +38,6 @@ export default class SwipeToSlide extends Component {
                     </div>
                     <img src={item.img} alt='' />
                   </div>
-                  {/* </a> */}
                 </Small>
               </div>
             );

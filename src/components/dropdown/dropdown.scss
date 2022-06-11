@@ -1,138 +1,30 @@
-.dropdown-menu {
-  width: 200px;
+.services-submenu {
+  width: 10rem;
   position: absolute;
-  top: 65px;
+  top: 75px;
   list-style: none;
   text-align: start;
-
-  li {
-    background: #fff;
-    cursor: pointer;
-  }
-
-  li:hover {
-    background: #f6f6f6;
-  }
 }
 
-.dropdown-menu.clicked {
+.services-submenu li {
+  background: #FFFFFF;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.services-submenu li a:hover {
+  background: rgb(0, 175, 175);
+}
+
+.services-submenu.clicked {
   display: none;
 }
 
-.dropdown-link {
+.submenu-item {
   display: block;
   width: 100%;
   height: 100%;
   text-decoration: none;
-  color: #5B5B5B;
-  font-family: 'Roboto' sans-serif;
-  font-size: 16px;
-  line-height: 19px;
-  padding: 8px;
+  color: white;
+  padding: 16px;
 }
-
-#components-dropdown-demo-placement .ant-btn {
-  margin-right: 8px;
-  margin-bottom: 8px;
-}
-
-
-
-
-
-
-
-
-
-// .nav__submenu {
-//   display: block;
-// }
-
-// .nav__menu-item:hover {
-//   .nav__submenu {
-//     display: block;
-//   }
-// }
-
-
-// $color-blue: #00aeef;
-// $color-blue-dark: #0d2035;
-// $submenu-width: 180px;
-
-
-// html {
-//   box-sizing: border-box;
-// }
-
-// *, *:before, *:after {
-//   box-sizing: border-box;
-// }
-
-// body {
-//   margin: 0;
-//   font-family: 'Open Sans', sans-serif;
-//   font-size: 16px;
-//   line-height: 1.5;
-// }
-
-// .menu-container {
-//   text-align: center;
-// }
-
-// nav {
-//   ul {
-//     list-style: none;
-//     padding-left: 0;
-//     margin-top: 0;
-//     margin-bottom: 0;
-//   }
-// }
-
-// .nav {
-//   display: inline-block;
-//   margin: 2rem auto 0;
-//   background: $color-blue-dark;
-//   color: #fff;
-//   text-align: left;
-  
-//   a {
-//     display: block;
-//     padding: 0 16px;
-//     line-height: inherit;
-//     cursor: pointer;
-//   }
-// }
-  
-// .nav__menu {
-//   line-height: 45px;
-//   font-weight: 700;
-//   text-transform: uppercase;
-// }
-  
-// .nav__menu-item {
-//   display: inline-block;
-//   position: relative;
-
-//   &:hover {
-//     background-color: $color-blue;
-
-//     .nav__submenu {
-//       display: block;
-//     }
-//   }
-// }
-    
-// .nav__submenu {
-//   font-weight: 300;
-//   text-transform: none;
-//   display: none;
-//   position: absolute;
-//   width: $submenu-width;
-//   background-color: $color-blue;
-// }
-    
-// .nav__submenu-item {
-//   &:hover {
-//     background: rgba(#000, 0.1);
-//   }
-// }

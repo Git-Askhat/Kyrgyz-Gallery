@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import NavbarwithSearch from '../navbar/navbar.with.search';
+import Navbar from '../navbar/index'
 import profile from '../../assets/images/profile/profile.jpg';
 import Instagram from '../../assets/svg/Instagram';
 import Telegram from '../../assets/svg/Telegram';
 import SvgLink from '../../assets/svg/Link';
 import '../../styles/global.scss';
 import MediaTabs from './tabs/index'
+import PhotosTab from './tabs/photos/index'
 
-import { CategoryTab, CategoryTabs } from './tabs/tabs'
 
 interface Info {
   following: number;
@@ -49,6 +50,7 @@ const handleChange = (e: any, value: any) => {
   return (
     <>
       <NavbarwithSearch />
+      {/* <Navbar isTransparent={true}/> */}
       <ProfileWrapper>
         <Line />
         <ProfileContainer>
@@ -88,6 +90,7 @@ const handleChange = (e: any, value: any) => {
         </ProfileContainer>
       </ProfileWrapper>
       <MediaTabs />
+      {/* <PhotosTab /> */}
     </>
   );
 }
@@ -100,7 +103,7 @@ const Line = styled.div`
 `;
 
 const ProfileWrapper = styled.div`
-  position: relative;
+  /* position: absolute; */
   width: 100%;
   /* background: gray; */
 
@@ -109,7 +112,7 @@ const ProfileWrapper = styled.div`
     height: 260px;
     object-fit: cover;
     border-radius: 50%;
-    z-index: 100;
+    z-index: 1;
   }
 `;
 

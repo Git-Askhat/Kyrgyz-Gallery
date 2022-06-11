@@ -1,27 +1,34 @@
 import React from 'react';
 
-import { TabsHolder, TabHeaderContainer, StylizedTab } from './styles';
+import {
+  TabHeaderContainer,
+  StylizedTab,
+  StyledTabPanel,
+  TabsHolder,
+  inactiveTab,
+} from './tabs.styles';
 
 interface TabInterface {
-    label: any,
-    active?: any
-    value: any,
-    onClick?: any
+  label: string,
+  active?: boolean,
+  value: number,
+  onClick?: any, 
 }
 
-export const CategoryTab = ({label, active, onClick}: TabInterface) => {
-    return (
-        <StylizedTab role="tab" active={active} onClick={onClick} /*inactiveTab={}*/ >
-            {label}
-        </StylizedTab>
-    )
-}
+export const Tab = ({ label, active,  onClick }: TabInterface) => {
+  return (
+    <StylizedTab
+      role='tab'
+      active={active}
+      onClick={onClick}
+      inactiveTab={inactiveTab}
+      >
+      {label}
+    </StylizedTab>
+  );
+};
 
-export const CategoryTabs = (props: {
-  selectedTab: any,
-  onChange: any,
-  children: any,
-}) => {
+export const Tabs = (props: { selectedTab: any, onChange: any, children: any }) => {
   const tabs = props.children.map((child: any) => {
     const handleClick = (e: any) => {
       props.onChange(e, child.props.value);
@@ -40,4 +47,12 @@ export const CategoryTabs = (props: {
   );
 };
 
-// export const
+export const TabPanel = (props: { children: any, value: any, selectedIndex: any }) => {
+  const hidden = props.value !== props.selectedIndex;
+
+  return (
+    <StyledTabPanel hidden={hidden} active={!hidden}>
+      {props.children}
+    </StyledTabPanel>
+  );
+};

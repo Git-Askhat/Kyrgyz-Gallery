@@ -36,7 +36,7 @@ const Container = styled.div<AttrDropdown>`
   .nav__submenu {
     /* display: ${(props) => (props.dropdown ? 'none' : 'none')}; */
     display: none;
-    width: 195px;
+    width: 300px;
     position: absolute;
     background: #F6F6F6;
     padding: 0;

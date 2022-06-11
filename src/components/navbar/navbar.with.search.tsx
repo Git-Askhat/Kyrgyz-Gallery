@@ -2,7 +2,6 @@ import { Link } from 'gatsby';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import NavbarItems from './NavbarItems';
 import SvgLogo from '../../assets/svg/Logo';
 import SvgOptions from '../../assets/svg/Options';
 import Dropdown from '../dropdown/index';
@@ -17,8 +16,6 @@ export default function NavbarwithSearch(props: { token?: boolean }) {
 
   const [isOpen, setOpen] = useState(false);
 
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
 
   const onMouseEnter = () => {
     if (window.innerWidth < 960) {
@@ -58,7 +55,7 @@ export default function NavbarwithSearch(props: { token?: boolean }) {
             </Logo>
           </Link>
           <Search>
-            <MainSearch search_text='photos' />
+            <MainSearch search_text='photos' aUrl="photos" />
           </Search>
         </Div>
         <Menu>
@@ -71,7 +68,7 @@ export default function NavbarwithSearch(props: { token?: boolean }) {
           <Sign onClick={modalOpen}>Sign In</Sign>
         </Menu>
       </Nav>
-      <SignIn isOpen={isOpen} close={() => setOpen(false)} />
+      {/* <SignIn isOpen={isOpen} close={() => setOpen(false)} /> */}
     </>
   );
 }

@@ -1,7 +1,9 @@
 import React from 'react'
+import Popularity from '../popularity'
 
 export default function PhotosTab() {
+
   return (
-    <div>PhotosTab</div>
+    <div><Popularity /></div>
   )
 }

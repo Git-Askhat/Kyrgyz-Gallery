@@ -1,38 +1,59 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-
-import SignUp from '../sign-up/index';
 
 import SvgLogo from '../../assets/svg/LogoColored';
 import SvgGoogle from '../../assets/svg/Google';
 import SvgFacebook from '../../assets/svg/Facebook';
 import SvgClose from '../../assets/svg/CloseSign';
 
-export default function SignIn(props: { isOpen: any; close: any; signUpModel: any }) {
+import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
+
+export default function SignIn(props: {
+  isOpen: any;
+  close: any;
+  signUpModel: any;
+}) {
   if (!props.isOpen) return null;
-
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-
-
-  const [isOpen2, setOpen2] = useState(false);
-  const inputRef = useRef(null);
 
   const modalOpen = () => {
     props.close();
     props.signUpModel();
   };
 
-  // const multiHandler = () => {
-  //   modalOpen(), 
-  //   props.close()
-  // }
+  const initialValues = {
+    email: '',
+    password: '',
+  };
 
-  // handleSubmit = (event: { preventDefault: () => void; }) => {
-  //   event.preventDefault();
-    
-  //   this.setState({ email: '', password: ''});
-  // }
+  const [{ email, password }, setInputValues] = useState(initialValues);
+
+  function resetValues() {
+    setInputValues({ ...initialValues });
+  }
+
+  const handleChange = (e: any) => {
+    setInputValues((values) => ({
+      ...values,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    console.log({ email, password });
+    resetValues();
+  };
+
+  const [currUser, setCurrUser] = useState(null);
+
+  const handleGoogle = () => {
+    signInWithGoogle;
+
+    // auth.onAuthStateChanged((user) => {
+    //   setCurrUser(user);
+    // });
+  };
 
   return (
     <>
@@ -43,31 +64,39 @@ export default function SignIn(props: { isOpen: any; close: any; signUpModel: an
             <SvgLogo />
           </Logo>
           <Buttons>
-            <ButtonGoogle>
+            <ButtonGoogle onClick={signInWithGoogle}>
               Sign in with <SvgGoogle className='Logo' />
             </ButtonGoogle>
             <ButtonFacebook>
               Sign in with <SvgFacebook className='Logo' />
             </ButtonFacebook>
           </Buttons>
-          <form /*onSubmit={handleSubmit}*/>
+          <form onSubmit={handleSubmit}>
             <InputName
               type='email'
-              // value={email}
+              value={email}
+              name='email'
               required
-              ref={inputRef}
-              placeholder='Username or E-mail'
+              onChange={handleChange}
+              placeholder='E-mail*'
             />
-            <InputName type='password' ref={inputRef} placeholder='Password' />
-            <SignButton>Sign In</SignButton>
+            <InputName
+              type='password'
+              value={password}
+              name='password'
+              onChange={handleChange}
+              placeholder='Password*'
+            />
+            <SignButton type='submit' onSubmit={handleSubmit}>
+              Sign In
+            </SignButton>
             <Links>
               <ButtonForgot>Forgot password?</ButtonForgot>
-              <ButtonSign onClick={modalOpen }>Sign up</ButtonSign>
+              <ButtonSign onClick={modalOpen}>Sign up</ButtonSign>
             </Links>
           </form>
         </Container>
       </Background>
-      
     </>
   );
 }
@@ -152,8 +181,6 @@ const InputName = styled.input`
   margin-top: 30px;
 `;
 
-const InputPass = styled(InputName)``;
-
 const SignButton = styled.button`
   width: 440px;
   height: 56px;
@@ -184,7 +211,3 @@ const ButtonForgot = styled.button`
 `;
 
 const ButtonSign = styled(ButtonForgot)``;
-function password(password: any, arg1: string) {
-  throw new Error('Function not implemented.');
-}
-

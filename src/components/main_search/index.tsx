@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Search from '../../assets/svg/search';
 import Down from '../../assets/svg/Down';
+import SearchDropdown from '../dropdown/dropdownSearch';
 
-export default function MainSearch(props: { search_text: string }) {
+export default function MainSearch(props: {
+  search_text: string;
+  aUrl: string;
+}) {
+  const [dropdown, setDropdown] = useState(false);
   return (
     <SearchContainer>
       <IconButton>
         <Search />
       </IconButton>
-      <SearchInput placeholder='Search images, videos and 3D models' />
+      <SearchInput placeholder={props.search_text} />
       <DropDwon>
-        <a>{props.search_text}</a>
-        <Down className='down' />
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <a
+            onMouseEnter={() => setDropdown(true)}
+            onMouseLeave={() => setDropdown(false)}>
+            {props.aUrl}
+          </a>
+          <Down className='down' />
+        </div>
+      {dropdown && <SearchDropdown />}
       </DropDwon>
     </SearchContainer>
   );
@@ -89,7 +101,7 @@ const IconButton = styled.button`
 const DropDwon = styled.div`
   right: 30px;
   width: auto;
-  position: relative;
+  /* position: relative; */
   display: flex;
   align-items: center;
   justify-content:  flex-end;
@@ -102,6 +114,4 @@ const DropDwon = styled.div`
   .down {
     margin-left: 10px;
   }
-  
-  }
-`;
+}`;

@@ -1,7 +1,8 @@
 import React from 'react'
+import Popularity from '../popularity'
 
 export default function VectorsTab() {
   return (
-    <div>VectorsTab</div>
+    <div><Popularity /></div>
   )
 }

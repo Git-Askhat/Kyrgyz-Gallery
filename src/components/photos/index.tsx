@@ -8,18 +8,19 @@ import MainSearch from '../main_search/index';
 import SignIn from '../sign-in/index';
 import GalleryIV from '../gallery/galleryImg';
 import { imgData } from '../gallery/galleryData';
+import { useTranslation } from 'react-i18next';
 
 export default function PhotosComponent() {
-  const [isOpen, setOpen] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <Div>
       <Background>
         <img src={BackgroundImg} alt='' />
         <Navbar active='/photos' token={true}/>
-        <MainSearch search_text='Image' />
+        <MainSearch search_text={t('search_text')} aUrl="Image" />
       </Background>
-      <SignIn isOpen={isOpen} close={() => setOpen(false)} />
+      {/* <SignIn isOpen={isOpen} close={() => setOpen(false)} signUpModel={undefined} /> */}
       <SwipeToSlide />
       <GalleryIV />
     </Div>

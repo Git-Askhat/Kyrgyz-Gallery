@@ -6,6 +6,7 @@ import nature from '../../assets/images/carousel/nature.jpg';
 import city from '../../assets/images/carousel/city.jpg';
 import travel from '../../assets/images/carousel/travel.jpg';
 import winter from '../../assets/images/carousel/winter.jpg';
+import { useTranslation } from 'react-i18next';
 
 // interface DataInterface {
 //     title?: string,
@@ -15,9 +16,9 @@ import winter from '../../assets/images/carousel/winter.jpg';
 
 export const carouselData = [
     {
-        title: 'Architecture',
+        title: `Architecture`,
         img: architecture,
-        link: '/architecture'
+        link: '/chuy'
     },
     {
         title: 'Design',

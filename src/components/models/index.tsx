@@ -6,8 +6,11 @@ import bgVideo from '../../assets/videos/snow.mp4';
 import SwipeToSlide from '../carousel/index';
 import MainSearch from '../main_search/';
 import '../../styles/global.scss';
+import { useTranslation } from 'react-i18next';
 
 export default function ModelsComponent() {
+  const { t } = useTranslation();
+  
   return (
     <Div>
       <Background>
@@ -15,7 +18,7 @@ export default function ModelsComponent() {
         <Video autoPlay loop muted>
           <source src={bgVideo} type='video/mp4' />
         </Video>
-        <MainSearch search_text='3D Models' />
+        <MainSearch search_text={t('search_text')} aUrl="Image" />
       </Background>
       <SwipeToSlide />
     </Div>
