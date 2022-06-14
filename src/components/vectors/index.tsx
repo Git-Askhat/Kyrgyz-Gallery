@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Navbar from '../../components/navbar/index';
 import SwipeToSlide from '../carousel/index';
 import MainSearch from '../main_search/index'
-import Gallery from '../gallery/galleryVector';
+import GalleryVector from '../gallery/galleryVector';
 import '../../styles/global.scss';
 import { useTranslation } from 'react-i18next';
 
@@ -18,7 +18,7 @@ export default function VectorsComponent() {
         <MainSearch search_text={t('search_text')} aUrl="Image" />
       </Container>
       <SwipeToSlide />
-      <Gallery />
+      <GalleryVector />
     </Div>
   );
 }

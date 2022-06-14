@@ -5,14 +5,16 @@ import SvgHoverDownload from '../../assets/svg/HoverDownload';
 import SvgHoverLike from '../../assets/svg/HoverLike';
 import SvgHoverSave from '../../assets/svg/HoverSave';
 import profile from '../../assets/images/profile/profile.jpg';
+import SvgProfile from '../../assets/svg/Profile';
 
-export default function Hover() {
+export default function Hover(user: any) {
+  console.log("Hover: ", user)
   return (
     <HoverContainer className="img-hover">
       <div className='prof-div'>
-        <img src={profile} alt='' className='image-prof' />
+        <img src={ user.avatar==="" ? <SvgProfile /> : profile} alt='' className='image-prof' />
         <Link to='/profile' className='link'>
-          <p className='user'>Askhat Shailoobekov</p>
+          <p className='user'>{user.name} {user.surname}</p>
         </Link>
       </div>
       <div className='div-right'>
@@ -37,7 +39,7 @@ const HoverContainer = styled.div`
   align-items: center;
   bottom: 0;
   left: 0;
-  z-index: 100;
+  z-index: 50;
 
   .prof-div {
     display: flex;

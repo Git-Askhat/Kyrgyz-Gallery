@@ -18,13 +18,14 @@ export default function Gallery() {
   const getImg = (imgSrc: any) => {
     setTempImgSrc(imgSrc);
     setModel(true);
+    // console.log("Image: ", tempImgSrc);
   };
 
   return (
     <>
       <DetailsContainer visible={model}>
         <DetailImg>
-          <DetailHeader />
+          <DetailHeader downloadLink={tempImgSrc}/>
           <DivContainer>
             <DivImg>
               <SvgClose onClick={() => setModel(false)} className='close-svg' />

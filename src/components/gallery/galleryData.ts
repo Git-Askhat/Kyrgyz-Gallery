@@ -4,6 +4,7 @@ import img12 from '../../assets/images/galleryImg/img12.jpg';
 import img14 from '../../assets/images/galleryImg/img14.jpg';
 
 import video1 from '../../assets/videos/galleryMpg/video1.mp4';
+import video2 from '../../assets/videos/galleryMpg/video2.mp4';
 import video3 from '../../assets/videos/galleryMpg/video3.mp4';
 import video5 from '../../assets/videos/galleryMpg/video5.mp4';
 
@@ -42,6 +43,10 @@ export const mp4Data = [
   {
     id: 1,
     mp4Src: video1,
+  },
+  {
+    id: 2,
+    mp4Src: video3,
   },
 
   {

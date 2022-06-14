@@ -6,16 +6,19 @@ import SvgLike from '../../assets/svg/Like';
 import profile from '../../assets/images/profile/profile.jpg';
 import SvgDownload from '../../assets/svg/Download';
 import SvgShare from '../../assets/svg/Share';
+
+// import { saveFileAs } from './download'
+// import api from './api'
 // import Google from '../../assets/svg/Google';
 
-export default function DetailHeader() {
+export default function DetailHeader(downloadLink: any) {
   return (
     <Header>
       <DivLeft>
         <ProfileDiv>
           <img src={profile} alt='' className='image-prof' />
           <div className='user-info'>
-            <Link to='/profile' className="link">
+            <Link to='/profile' className='link'>
               <p className='user'>Askhat Shailoobekov</p>
             </Link>
             <p className='user'>132 followers</p>
@@ -33,7 +36,14 @@ export default function DetailHeader() {
         </LikeButton>
         <SaveButton>Save</SaveButton>
         <DownloadContainer>
-          <DownloadButton>Download</DownloadButton>
+          <DownloadButton>
+            <Link
+              to='https://firebasestorage.googleapis.com/v0/b/kyrgyz-gallery.appspot.com/o/videos%2Fvideo2.mp4?alt=media&token=9c7ea07a-e404-411b-950f-853e15d80774'
+              target='_blank'
+              download>
+              Download
+            </Link>
+          </DownloadButton>
           <Resolution>
             <SvgDownload />
           </Resolution>
