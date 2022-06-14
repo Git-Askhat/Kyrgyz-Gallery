@@ -1,13 +1,12 @@
-import architecture from '../../assets/images/carousel/architecture.jpg';
-import design from '../../assets/images/carousel/design.jpg';
-import historical from '../../assets/images/carousel/historical.jpg';
-import home from '../../assets/images/carousel/home.jpg';
-import nature from '../../assets/images/carousel/nature.jpg';
-import city from '../../assets/images/carousel/city.jpg';
-import travel from '../../assets/images/carousel/travel.jpg';
-import winter from '../../assets/images/carousel/winter.jpg';
-import { useTranslation } from 'react-i18next';
+import chuy from '../../assets/images/carousel/chuy.jpg';
+import naryn from '../../assets/images/carousel/naryn.png';
+import issyk_kul from '../../assets/images/carousel/issyk_kul.jpg';
+import jalal_abad from '../../assets/images/carousel/jalal_abad.jpg';
+import osh from '../../assets/images/carousel/osh.jpg';
+import talas from '../../assets/images/carousel/talas.jpg';
+import batken from '../../assets/images/carousel/batken.jpeg';
 
+// const { t } = useTranslation();
 // interface DataInterface {
 //     title?: string,
 //     img?: any,
@@ -16,39 +15,38 @@ import { useTranslation } from 'react-i18next';
 
 export const carouselData = [
     {
-        title: `Architecture`,
-        img: architecture,
+        title: `chuy`,
+        img: chuy,
         link: '/chuy'
     },
     {
-        title: 'Design',
-        img: design,
-        link: '/design'
+        title: `naryn`,
+        img: naryn,
+        link: '/naryn'
     },
     {
-        title: 'Winter',
-        img: winter,
-        link: '/winter'
+        title: `issyk_kul`,
+        img: issyk_kul,
+        link: '/issyk_kul'
     },
     {
-        title: 'Home',
-        img: home,
+        title: `osh`,
+        img: osh,
+        link: '/osh'
     },
     {
-        title: 'Nature',
-        img: nature,
+        title: `jalal_abad`,
+        img: jalal_abad,
+        link: '/jalal_abad'
     },
     {
-        title: 'Historical',
-        img: historical,
+        title: `batken`,
+        img: batken,
+        link: '/batken'
     },
     {
-        title: 'City',
-        img: city,
+        title: `talas`,
+        img: talas,
+        link: '/talas'
     },
-    {
-        title: 'Travel',
-        img: travel,
-    },
-    
 ]

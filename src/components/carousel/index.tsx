@@ -8,8 +8,8 @@ import { carouselData } from './data';
 import '../../styles/global.scss';
 import { useTranslation } from 'react-i18next';
 
-
 export default class SwipeToSlide extends Component {
+ 
   render() {
     const settings = {
       className: 'center',
@@ -33,7 +33,8 @@ export default class SwipeToSlide extends Component {
                   <div>
                     <div>
                       <a href={item.link}>
-                        <h3>{item.title}</h3>
+                        {/* <h3>{(item.title)}</h3> */}
+                        <h3>{(item.title)}</h3>
                       </a>
                     </div>
                     <img src={item.img} alt='' />

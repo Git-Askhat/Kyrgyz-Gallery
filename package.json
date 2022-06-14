@@ -14,9 +14,10 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
     "@types/styled-components": "5.1.21",
     "@u-wave/react-vimeo": "^0.9.5",
-    "antd": "^4.19.5",
     "firebase": "^9.8.2",
     "gatsby": "4.5.4",
     "gatsby-background-image": "1.6.0",

@@ -22,6 +22,7 @@ const Container = styled.div<Visibility>`
   transition: opacity 0.4s ease, visibility 0.4s ease,
     transform 0.5s ease-in-out;
   visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
+  /* visibility: visible; */
   opacity: 0;
   transform: scale(0);
   overflow: hidden;

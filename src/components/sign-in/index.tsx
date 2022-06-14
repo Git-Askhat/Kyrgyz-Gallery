@@ -41,18 +41,13 @@ export default function SignIn(props: {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    console.log({ email, password });
-    resetValues();
-  };
-
-  const [currUser, setCurrUser] = useState(null);
-
-  const handleGoogle = () => {
-    signInWithGoogle;
-
-    // auth.onAuthStateChanged((user) => {
-    //   setCurrUser(user);
-    // });
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      props.close()
+      resetValues();
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -87,7 +82,7 @@ export default function SignIn(props: {
               onChange={handleChange}
               placeholder='Password*'
             />
-            <SignButton type='submit' onSubmit={handleSubmit}>
+            <SignButton type='submit'>
               Sign In
             </SignButton>
             <Links>

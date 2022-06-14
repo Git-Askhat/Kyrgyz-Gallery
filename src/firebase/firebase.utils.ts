@@ -2,6 +2,9 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
+import { getFirestore } from '@firebase/firestore'
+import { getStorage } from '@firebase/storage'
+
 const config = {
   apiKey: 'AIzaSyCLfAFAoNW9n69HR4uUdJCAgNeMfJnJpqM',
   authDomain: 'kyrgyz-gallery.firebaseapp.com',
@@ -59,3 +62,9 @@ provider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export default firebase;
+
+
+export const app = firebase.initializeApp(config);
+ export const storage = getStorage(app);
+ 
+export const db = getFirestore(app);

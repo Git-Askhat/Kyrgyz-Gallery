@@ -1,5 +1,5 @@
 import { Link } from 'gatsby';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
@@ -9,11 +9,12 @@ import SvgOptions from '../../assets/svg/Options';
 import Dropdown from '../dropdown/dropdown';
 import LanguageDropdown from '../dropdown/languageDropdown';
 import MainSearch from '../main_search/nav_search';
+import SvgUpload from '../../assets/svg/Upload';
 
 import SignIn from '../sign-in/index';
 import SvgProfile from '../../assets/svg/Profile';
 import SignUp from '../sign-up';
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils'
+import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 
 import { actionCreators, State } from '../../redux/index';
 import { bindActionCreators } from 'redux';
@@ -30,22 +31,19 @@ interface changeBackground {
 }
 
 export default function Navbar(props: {
-  active?: string;
-  token?: boolean;
+  active: string;
   isTransparent?: boolean;
 }) {
   const [dropdown, setDropdown] = useState(false);
   const [dropdownLang, setDropdownLang] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentUser, setCurrentUser]: any = useState(null);
-  // console.log(currUser);
+
   const [isOpen, setOpen] = useState(false);
   const [isOpen2, setOpen2] = useState(false);
 
-  const lang = useSelector((state: State) => state.lang);
+  // const lang = useSelector((state: State) => state.lang);
   const { t } = useTranslation();
-  // i18n.changeLanguage(lang);
-  console.log('current language: ' + lang);
 
   const backgroundChange = () => {
     if (window.scrollY >= 300) {
@@ -63,22 +61,32 @@ export default function Navbar(props: {
 
   let unsubscribeFromAuth: any | null = null;
 
-  const componentDidMount = () => {
-    unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
+  useEffect(() => {
+    unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
       setCurrentUser(user);
-      createUserProfileDocument(user, "");
+      createUserProfileDocument(user, '');
+    });
+  });
 
-      console.log("New user: ", user);
-    })
-  }
+  // const componentDidMount = () => {
+  //   unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
+  //     setCurrentUser(user);
+  //     createUserProfileDocument(user, '');
 
-  componentDidMount();
+  //     // console.log("New user: ", user);
+  //   });
+  // };
 
-  const componentWillUnmount = () => {
-    unsubscribeFromAuth();
-  }
+  useEffect(() => {
+    console.log('');
+    return () => {};
+  });
 
-  componentWillUnmount();
+  // const componentWillUnmount = () => {
+  //   unsubscribeFromAuth();
+  // }
+
+  // componentWillUnmount();
 
   return (
     <Container>
@@ -109,30 +117,36 @@ export default function Navbar(props: {
             </Search>
           </Div>
           <Menu>
-            {/* <NavbarLink to='discover'><Main_Dropdown /></NavbarLink> */}
-            {/* {props.token ? ( */}
-            {/* <Link to='/profile'> */}
-              <LanguageDiv
-                onMouseEnter={() => setDropdownLang(true)}
-                onMouseLeave={() => setDropdownLang(false)}>
-                <SvgLanguage className='profile'/>
-                {dropdownLang && <LanguageDropdown />}
-                </LanguageDiv>
-            {currentUser ?
-              <DropdownDiv
-                onMouseEnter={() => setDropdown(true)}
-                onMouseLeave={() => setDropdown(false)}>
-                <SvgProfile className='profile'></SvgProfile>
-                {dropdown && <Dropdown />}
-              </DropdownDiv> : 
-            <Options >
-              <SvgOptions />
-              <Sign onClick={modalOpen}>{t('sign-in')}</Sign>
-              {/* {dropdown && <Dropdown dropdown={dropdown}/>} */}
-            </Options>
-
-            }
-           
+            <LanguageDiv
+              onMouseEnter={() => setDropdownLang(true)}
+              onMouseLeave={() => setDropdownLang(false)}>
+              <SvgLanguage className='profile' />
+              {dropdownLang && <LanguageDropdown />}
+            </LanguageDiv>
+            {currentUser ? (
+              <>
+                <DropdownDiv
+                  onMouseEnter={() => setDropdown(true)}
+                  onMouseLeave={() => setDropdown(false)}>
+                  <SvgProfile className='profile'></SvgProfile>
+                  {dropdown && <Dropdown />}
+                </DropdownDiv>
+                <UploadButotn>
+                  <SvgUpload />
+                  <Link to='/upload' className='upload'>
+                    Upload
+                  </Link>
+                </UploadButotn>
+              </>
+            ) : (
+              <>
+                <Options>
+                  <SvgOptions />
+                  <Sign onClick={modalOpen}>{t('sign-in')}</Sign>
+                  {/* {dropdown && <Dropdown dropdown={dropdown}/>} */}
+                </Options>
+              </>
+            )}
           </Menu>
         </NavSml>
       </Nav>
@@ -158,7 +172,7 @@ const DropdownDiv = styled.div`
 `;
 
 const LanguageDiv = styled.div`
- display: flex;
+  display: flex;
   /* justify-content: center; */
   align-items: center;
   height: 10vh;
@@ -269,5 +283,25 @@ const Div = styled.div`
   align-items: center;
 `;
 
+const UploadButotn = styled.button`
+  margin-left: 40px;
+  border-radius: 3px;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  background: #0a388d;
+  display: flex;
+  align-items: center;
 
+  .upload {
+    margin-left: 10px;
 
+    font-family: 'Quicksand' 'san-serif';
+    font-style: normal;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+  }
+`;

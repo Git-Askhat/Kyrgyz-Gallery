@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Navbar from '../navbar';
@@ -8,9 +8,28 @@ import MainSearch from '../main_search/index';
 import GalleryVideo from '../gallery/galleryVideo';
 import '../../styles/global.scss';
 import { useTranslation } from 'react-i18next';
+import { collection, getDocs } from 'firebase/firestore';
 
 export default function VideosComponent() {
   const { t } = useTranslation();
+
+  const [posts, setPosts] = useState([]);
+  const [vid, setVid] = useState('');
+  // const postsCollectionRef = collection(db, "posts");
+  // const videoColl = collection(db, "videos");
+
+  useEffect(() => {
+    const getPosts = async () => {
+      // const data = await getDocs(postsCollectionRef);
+      // const video = await getDocs(collection(db, `videos/${data.video_id}`));
+      // setVid(video);
+      // setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
+      // console.log("Fetched: ", data);
+    };
+
+    getPosts();
+  }, [])
+
   return (
     <Div>
       <Background>
